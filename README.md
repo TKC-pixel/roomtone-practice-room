@@ -1,5 +1,7 @@
 # Roomtone
 
+**Live rehearsal preview:** [Open Roomtone](https://roomtone-practice-room.onrender.com/). Hosted on Render's Free plan; it may take about a minute to wake, and server-stored rooms/setlists/history can reset when the instance restarts. See [hosting details](docs/RENDER.md).
+
 A browser music rehearsal room with live peer audio, per-source mixing, MIDI instruments, DAW/VST audio capture, vocal microphones, MD talkback, room chat, shared backing tracks, synchronized metronome, lightweight room roles, shared setlists, and session history.
 
 ## First-time local setup

@@ -1,5 +1,7 @@
 # Roomtone user manual
 
+**Hosted rehearsal preview:** open [Roomtone](https://roomtone-practice-room.onrender.com/), choose **Join room**, and enter your name and the band's room code. Share this HTTPS link with musicians; they do not need to install Node or create accounts. The free host can take about a minute to wake and can lose server-stored setlists, history and room roles on restart. Keep copies of important setlists. TURN relay setup and real instrument/network acceptance are still outstanding; see [hosting details](docs/RENDER.md).
+
 Roomtone is a name-and-room-code rehearsal app. You do not need an account, email address, or sign-in. For installation, use the [project setup guide](docs/SETUP.md); for software instruments, use the [DAW routing guide](docs/DAW_ROUTING.md).
 
 ## First rehearsal checklist
