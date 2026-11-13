@@ -1,6 +1,6 @@
 # Release readiness — 1.2.0
 
-The software is prepared for a local rehearsal acceptance test. Internet rehearsal still needs an actual HTTPS host and TURN relay configured; neither is provisioned by the project.
+The software is available as a [free hosted rehearsal preview](https://roomtone-practice-room.onrender.com/) on Render. HTTPS hosting is configured; TURN relay configuration and real equipment/network acceptance remain outstanding. Free-tier room data can be lost on sleep, restart or redeploy; see [hosting details](RENDER.md).
 
 ## Completed
 
@@ -18,13 +18,13 @@ The software is prepared for a local rehearsal acceptance test. Internet rehears
 
 Run `npm run doctor`, `npm run check` and `npm test`. Automated tests cover signaling/rooms, persistence/restart, setlist conflicts, request validation, MD gain gating and metronome scheduling with simulated audio clocks. The local browser check used two separate identities and verified shared timing propagation, click mute, role promotion and connection reporting.
 
-These checks do not establish audible instrument quality or internet latency. The GitHub workflow runs on Node 22 and 24 after publication; its remote result has not yet been observed.
+These checks do not establish audible instrument quality or internet latency. The initial GitHub workflow passed on Node 22 and 24. The Render deployment also passed all seven tests; its live browser check confirmed joining, messaging and shared setlist storage on 13 November 2026.
 
 ## Deployment still to configure
 
-1. A reachable HTTPS address, valid certificate or TLS reverse proxy, and forwarding of `/signal` WebSocket upgrades.
+1. HTTPS hosting and `/signal` WebSocket forwarding are configured on Render; verified by a live room join.
 2. A working TURN relay and credentials supplied through the host environment. Use `npm run doctor -- --remote`, then exercise a relay-only media connection.
-3. A single persistent server process, writable room-data storage and backups.
+3. Durable room-data storage and backups for use beyond the ephemeral free preview. A single server instance is running, but its local filesystem does not survive restarts.
 
 The supplied defaults intentionally listen on localhost and contain no credentials. The remote configuration check reports missing HTTPS/TURN until configured.
 

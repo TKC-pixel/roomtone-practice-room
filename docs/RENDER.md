@@ -2,6 +2,14 @@
 
 GitHub stores the source; Render runs the Node/WebSocket server and serves the browser app over HTTPS. GitHub Pages alone cannot run this server. Musicians still join by name and room code. Only the person managing hosting needs a Render account.
 
+## Current deployment
+
+- Live app: [roomtone-practice-room.onrender.com](https://roomtone-practice-room.onrender.com/).
+- Service: `roomtone-practice-room`, Free plan, Frankfurt, Node 24, branch `main`.
+- Source: public Git repository connection. Auto-deploy is off; use Render's **Manual Deploy** after updates. The initial service was configured manually using the settings below, not registered as a managed Blueprint.
+- Deployment build passed all seven automated tests on 13 November 2026. Browser verification confirmed HTTPS page loading, room joining/WebSocket connection, chat, and a shared setlist save/reopen round trip.
+- TURN credentials and physical instrument/network acceptance are still outstanding. Loading the site or passing signaling tests does not establish audible media quality.
+
 ## First deployment
 
 1. Sign in to [Render](https://dashboard.render.com). If using GitHub sign-in, review and authorize the requested identity permissions. Complete any account terms yourself.
