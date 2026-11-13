@@ -1,5 +1,7 @@
 # Project setup and deployment
 
+For the free hosted rehearsal preview, follow [Render deployment](RENDER.md). The repository includes a `render.yaml` for a free Node web service. Its room-data file is ephemeral; keep local copies of important setlists.
+
 ## Local installation
 
 Install Node.js 22.9 or newer and a desktop browser with the input support you need, such as Chrome or Edge. Check `node --version` and `npm --version` in a new terminal. The Node requirement comes from the start command's optional `.env` loader.
