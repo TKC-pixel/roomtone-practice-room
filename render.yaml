@@ -1,0 +1,23 @@
+# Free rehearsal preview. Room data is lost when the instance restarts.
+services:
+  - type: web
+    name: roomtone-practice-room
+    runtime: node
+    plan: free
+    region: frankfurt
+    branch: main
+    buildCommand: npm ci && npm run check && npm test
+    startCommand: PUBLIC_ORIGIN="$RENDER_EXTERNAL_URL" npm start
+    healthCheckPath: /health
+    autoDeployTrigger: off
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PORT
+        value: "10000"
+      - key: MAX_PARTICIPANTS
+        value: "8"
+      - key: ICE_TRANSPORT_POLICY
+        value: all

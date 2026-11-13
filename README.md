@@ -53,6 +53,7 @@ On this computer, the project folder is `C:\Users\TrinityC\Documents\Codex\2026-
 
 ## Documentation
 
+- [Free Render deployment](docs/RENDER.md) — host the app from GitHub, with free-tier storage and audio-connectivity limits.
 - [User manual](USER_MANUAL.md) — every main control and a rehearsal walkthrough.
 - [Project setup and deployment](docs/SETUP.md) — installation commands, first room, DAW audio setup, HTTPS/TURN, backups, and first rehearsal checks.
 - [DAW/VST audio routing](docs/DAW_ROUTING.md) — get Kontakt, Logic, FL Studio, and other software instrument output into Roomtone.
