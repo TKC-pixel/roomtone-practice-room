@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#10120f" />
+    <title>Roomtone — Live practice room</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brandmark">♫</span>roomtone <small>STUDIO</small>
+        </div>
+        <div class="top-center">
+          <span class="sessionpill" id="roomPill"
+            ><i class="live-dot"></i> NOT CONNECTED</span
+          ><span id="roomNameTop">Sunday Service Run</span
+          ><span class="people" id="peopleCount">· 0 in room</span>
+        </div>
+        <div class="top-right">
+          <div class="avatar-stack" id="avatarStack"></div>
+          <button
+            class="icon-button"
+            id="inviteBtn"
+            aria-label="Copy room link"
+          >
+            ↗</button
+          ><button class="leave" id="leaveBtn">Join room</button>
+        </div>
+      </header>
+      <aside class="sidebar">
+        <div>
+          <div class="side-label">Workspace</div>
+          <div class="nav-item active">
+            <span class="nav-icon">◉</span><span>Practice room</span>
+          </div>
+          <div class="nav-item">
+            <span class="nav-icon">♫</span><span>Setlists</span>
+          </div>
+          <div class="nav-item">
+            <span class="nav-icon">◷</span><span>Sessions</span>
+          </div>
+          <div class="nav-item">
+            <span class="nav-icon">⌘</span><span>Devices</span>
+          </div>
+        </div>
+        <div>
+          <div class="side-label">Current session</div>
+          <div class="room-card">
+            <div class="tiny">● waiting to join</div>
+            <h3>Sunday Service Run</h3>
+            <p>Worship team · Room 02<br />Join your band to begin</p>
+          </div>
+        </div>
+        <div class="side-bottom">
+          <div class="side-label">Quick help</div>
+          <div class="help-card">
+            Join by name and room code. Add a microphone, instrument, or DAW
+            loopback input as its own mixer channel.
+          </div>
+          <div class="nav-item">
+            <span class="nav-icon">⚙</span><span>Settings</span>
+          </div>
+        </div>
+      </aside>
+      <main class="main">
+        <div class="pagehead">
+          <div>
+            <div class="eyebrow">Live rehearsal studio</div>
+            <h1>Sunday Service Run</h1>
+            <div class="subtitle">
+              Practice together in real time. Shape your own mix as you play.
+            </div>
+          </div>
+          <div class="head-actions">
+            <button class="btn subtle" id="addInstrumentTop">
+              ＋ Add instrument</button
+            ><button class="btn primary" id="midiTop">
+              ⌘ &nbsp;Connect MIDI
+            </button>
+          </div>
+        </div>
+        <div class="content">
+          <div class="left-col">
+            <section class="hero">
+              <div class="hero-info">
+                <div>
+                  <div class="track-meta">
+                    <span class="tag">ROOM BACKING TRACK</span> SHARED AUDIO
+                  </div>
+                  <h2 id="backingName">Load a backing track</h2>
+                  <p id="backingDetails">
+                    Choose an audio file to play and send it into the room
+                  </p>
+                </div>
+                <div class="transport">
+                  <button class="play" id="playTrack" aria-label="Play">
+                    ▶</button
+                  ><span class="transport-time" id="trackTime"
+                    >0:00 <span style="color: #666d62">/ 0:00</span></span
+                  >
+                  <div class="progress" id="trackProgress"></div>
+                  <button class="btn" id="loadTrackBtn">Load audio</button
+                  ><input
+                    type="file"
+                    id="backingFile"
+                    accept="audio/*"
+                    hidden
+                  />
+                </div>
+              </div>
+              <div class="hero-art">
+                <div class="art-disc"></div>
+                <div class="disc-arm"></div>
+              </div>
+            </section>
+            <section class="metronome panel" aria-labelledby="metronomeTitle">
+              <div class="metronome-heading">
+                <div><h2 id="metronomeTitle">Metronome</h2><p>Your headphones · not sent to the room</p></div>
+                <button id="metroToggle" class="btn primary" aria-pressed="false">Start metronome</button>
+              </div>
+              <div class="metronome-controls">
+                <div class="metro-tempo">
+                  <label for="metroBpm">Tempo <span>BPM</span></label>
+                  <div class="metro-tempo-input"><button id="metroMinus" class="icon-button" aria-label="Decrease tempo">−</button><input id="metroBpm" type="number" min="30" max="300" step="1" value="68"><button id="metroPlus" class="icon-button" aria-label="Increase tempo">+</button><button id="metroTap" class="btn">Tap tempo</button></div>
+                  <input id="metroTempoRange" type="range" min="30" max="300" value="68" aria-label="Tempo slider">
+                </div>
+                <div><label for="metroBeats">Beats per bar</label><select id="metroBeats"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select><label for="metroCountIn">Count-in bars</label><select id="metroCountIn"><option value="0">Off</option><option value="1" selected>1 bar</option><option value="2">2 bars</option><option value="4">4 bars</option></select><label class="metro-accent"><input type="checkbox" id="metroAccent" checked> Accent first beat</label></div>
+                <div><label for="metroVolume">Click volume <output id="metroVolumeValue">35%</output></label><input id="metroVolume" type="range" min="0" max="100" value="35"><div id="metroBeatLights" class="metro-beats" aria-hidden="true"></div><span id="metroStatus" class="metro-status" role="status">Stopped · 68 BPM</span></div>
+              </div>
+              <p id="metroSyncStatus" class="metro-sync-status" role="status">Join musicians on separate networks to compare clock timing</p>
+            </section>
+            <div class="section-head">
+              <div>
+                <span class="section-title">Send channels & personal mix</span
+                ><span class="section-sub"
+                  >Your channels send to the band; LIVE channels affect only
+                  you</span
+                >
+              </div>
+              <div class="view-switch">
+                <button class="selected">Mixer</button
+                ><button id="tracksBtn">Tracks</button>
+              </div>
+            </div>
+            <section class="mixer" id="mixer">
+              <div class="mixer-head">
+                <span>Instrument</span><span>Input level</span
+                ><span>Volume</span><span>Mute</span><span></span>
+              </div>
+              <div id="channels"></div>
+              <button class="channel-add" id="addInstrument">
+                ＋ Add an instrument or vocalist
+              </button>
+            </section>
+            <div class="special-inputs">
+              <div class="input-card">
+                <div class="input-icon">♙</div>
+                <div class="input-info">
+                  <strong>Your vocalist mic</strong
+                  ><span id="vocalDevice"
+                    >No mic connected · Use audio input</span
+                  >
+                </div>
+                <span class="rec-indicator" id="vocalStatus">● OFF</span
+                ><button
+                  class="mic-btn"
+                  id="vocalMic"
+                  aria-label="Connect vocalist microphone"
+                >
+                  ⌁
+                </button>
+              </div>
+              <div class="input-card md">
+                <div class="input-icon">🎙</div>
+                <div class="input-info">
+                  <strong>MD microphone</strong
+                  ><span id="mdDevice"
+                    >Director cue channel · Push to talk</span
+                  >
+                </div>
+                <span class="rec-indicator" id="mdStatus">● READY</span
+                ><button
+                  class="mic-btn"
+                  id="mdMic"
+                  aria-label="Push to talk for music director"
+                >
+                  ⌁
+                </button>
+              </div>
+            </div>
+          </div>
+          <aside class="right-col">
+            <section class="panel">
+              <div class="panel-head">
+                <strong>Live audio room</strong
+                ><span id="streamRoomLabel">NOT CONNECTED</span>
+              </div>
+              <div class="stream-card">
+                <div class="stream-preview paused" id="streamPreview">
+                  <span class="stream-badge"
+                    ><i
+                      class="live-dot"
+                      style="
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: 4px;
+                      "
+                    ></i>
+                    WEBRTC AUDIO</span
+                  >
+                  <div class="equalizer" aria-hidden="true">
+                    <b style="height: 40%"></b><b style="height: 80%"></b
+                    ><b style="height: 51%"></b><b style="height: 95%"></b
+                    ><b style="height: 63%"></b><b style="height: 35%"></b
+                    ><b style="height: 78%"></b><b style="height: 44%"></b
+                    ><b style="height: 92%"></b><b style="height: 52%"></b
+                    ><b style="height: 73%"></b><b style="height: 40%"></b
+                    ><b style="height: 86%"></b><b style="height: 29%"></b
+                    ><b style="height: 64%"></b>
+                  </div>
+                  <span class="stream-cam">◉</span>
+                </div>
+                <div class="stream-controls">
+                  <span class="stream-status"
+                    ><i class="live-dot"></i
+                    ><span id="streamStatusText"
+                      >Join a room to connect audio</span
+                    ></span
+                  ><button class="btn stream-btn" id="streamBtn" disabled>
+                    Room audio
+                  </button>
+                </div>
+              </div>
+            </section>
+            <section class="panel chat-panel">
+              <div class="panel-head">
+                <strong>Room chat</strong><span>0 musicians</span>
+              </div>
+              <div class="chat-messages" id="messages"></div>
+              <form class="chat-compose" id="chatForm">
+                <input
+                  id="chatInput"
+                  placeholder="Message the room…"
+                  autocomplete="off"
+                  aria-label="Message the room"
+                /><button class="send-btn" aria-label="Send message">↑</button>
+              </form>
+              <div class="session-footer">
+                <span>Session latency</span
+                ><span class="latency">Room audio RTT pending</span>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal" id="modal"></div>
+    </div>
+    <audio id="backingAudio" preload="metadata"></audio>
+
+    <script src="/app.js" defer></script>
+    <script type="module" src="/metronome.js"></script>
+    <script src="/diagnostics.js" defer></script>
+  </body>
+</html>
